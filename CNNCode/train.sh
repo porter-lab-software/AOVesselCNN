@@ -15,5 +15,5 @@
 
 module load Anaconda2/python-2.7  
 module add CUDA/9.1.85
-python wrapperPrepData.py 'config_train.txt'
+python prepare_hdf5.py 'config_train.txt'
 python masterScript_TrainandTest_All.py 'config_train.txt'

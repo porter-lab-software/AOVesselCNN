@@ -1,38 +1,23 @@
 [prep data type]
 Training = True
 TestingKnown = True
-TestingUnknown = False
 
 [data paths]
-#To train network include: image_path, path_local, validation_image_path, "train_*" paths, "test_*" paths 
-#To use network on unknown image include: image_path, path_local, trained_path, test_imgs_original path
-#Comment out paths and folders that are not needed for the task
+#To train network include: image_path, path_local, validation_image_path, specfic hdf5 file names
 
 image_path = /brazos/porter/hmq/DataSet Folders_Images/TrainingDataSet/
-path_local =  /brazos/porter/hmq/DataSet Folders_HDF5/standard/
-#trained_path = /brazos/porter/hmq
 validation_image_path = /brazos/porter/hmq/DataSet Folders_Images/TestingDataSet/
+path_local =  /brazos/porter/hmq/DataSet Folders_HDF5/standard/
 
 train_imgs_original = standard_imgs_train.hdf5
-train_groundTruth = standard_groundTruth_train.hdf5
-train_border_masks = standard_borderMasks_train.hdf5
-train_LGVessels = standard_LGVesselMasks_train.hdf5
 train_combo = standard_Combos_train.hdf5
-
 test_imgs_original = standard_imgs_test.hdf5
-test_groundTruth = standard_groundTruth_test.hdf5
-test_border_masks = standard_borderMasks_test.hdf5
-test_LGVessels = standard_LGVesselMasks_test.hdf5
 test_combo = standard_Combos_test.hdf5
-
-
-[dataset name]
-#Describes collection of training and or testing images
-name = standard
+trained_cnn = trained_best_weights.h5
 
 [experiment name]
-#Identifier for specific run
-name = example
+#Identifier for specific run (output folder)
+name = trained
 
 [data attributes]
 #Dimensions of the patches extracted from the full images
@@ -49,8 +34,7 @@ stride_width = 64
 N_epochs = 350
 batch_size = 64
 
-####IMPORTANT - INVESTIGATE
-#if running with nohup
+# enable nohup so remote task continues if logout
 nohup = True
 
 

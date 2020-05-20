@@ -1,4 +1,6 @@
 #Prints what version of each module is being called at this time
+import datetime
+print datetime.datetime.now()
 
 import os
 #print "os version"

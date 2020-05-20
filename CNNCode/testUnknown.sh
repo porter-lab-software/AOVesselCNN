@@ -12,8 +12,6 @@
 
 #SBATCH --mail-type=all  # email me when the job starts
 
-
 module load Anaconda2/python-2.7  
 module add CUDA/9.1.85
-python wrapperPrepData.py 'config_test_only.txt'
 python test_Unknown_Only.py 'config_test_only.txt'
