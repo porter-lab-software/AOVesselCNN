@@ -15,4 +15,5 @@
 
 module load Anaconda2/python-2.7  
 module add CUDA/9.1.85
-python resave_old_model.py 'config_resave.txt'
+python version_print.py
+python resave_old_model.py 'resave_config.txt'
