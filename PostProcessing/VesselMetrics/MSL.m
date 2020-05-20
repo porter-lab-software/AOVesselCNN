@@ -1,5 +1,6 @@
 function [meanSegLength , stdLength] = MSL(skeletonImage)
 %function finds the branch points and endpoints in skeletonized Image
+%Computes the length of the unbrached vessel segments
 % March 2019
 
 maxVal = max(skeletonImage(:));
