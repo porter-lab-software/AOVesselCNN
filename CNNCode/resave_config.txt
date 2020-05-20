@@ -1,0 +1,9 @@
+[data paths]
+# older_model: created with prior tensorflow/keras package
+older_model_folder = /brazos/porter/github/trained/
+model_file = architecture.json
+weights_file = best_weights.h5
+# location of renamed json saved with current package
+newer_model_folder = /brazos/porter/github/trained/
+
+

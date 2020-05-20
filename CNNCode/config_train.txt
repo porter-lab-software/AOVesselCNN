@@ -5,9 +5,9 @@ TestingKnown = True
 [data paths]
 #To train network include: image_path, path_local, validation_image_path, specfic hdf5 file names
 
-image_path = /brazos/porter/hmq/DataSet Folders_Images/TrainingDataSet/
-validation_image_path = /brazos/porter/hmq/DataSet Folders_Images/TestingDataSet/
-path_local =  /brazos/porter/hmq/DataSet Folders_HDF5/standard/
+image_path = /brazos/porter/github/DataSet Folders_Images/TrainingDataSet/
+validation_image_path = /brazos/porter/github/DataSet Folders_Images/TestingDataSet/
+path_local =  /brazos/porter/github/DataSet Folders_HDF5/standard/
 
 train_imgs_original = standard_imgs_train.hdf5
 train_combo = standard_Combos_train.hdf5
