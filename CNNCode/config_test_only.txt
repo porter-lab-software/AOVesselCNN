@@ -1,7 +1,7 @@
 [data paths]
 #To use network on unknown image include: image_path, path_local, trained_path, test_imgs_original path
 image_path = /brazos/porter/github/DataSet Folders_Images/example/
-trained_path = /brazos/porter/github/TrainedCNN/
+trained_path = /brazos/porter/github/trained/
 trained_cnn = trained_best_weights.h5
 
 [experiment name]
