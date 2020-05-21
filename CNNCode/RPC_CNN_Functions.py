@@ -195,25 +195,7 @@ def get_data_unknown_Imgs(test_imgs, imgs_to_test, patch_height, patch_width, st
     return patches_imgs_test, test_imgs.shape[2], test_imgs.shape[3]
 
 
-def extract_classes(four_class_array):
-       
-    capillary_array = np.zeros(four_class_array.shape)
-    capillary_logicals = (four_class_array == 1)
-    capillary_array[capillary_logicals] = 1
-    print "total capillary logicals"
-    print np.sum(capillary_logicals)
-    
-    canvas_border_array = np.zeros(four_class_array.shape)
-    canvas_logicals = (four_class_array==2)
-    canvas_border_array[canvas_logicals] = 1
-
-    lgvessel_array = np.zeros(four_class_array.shape)
-    lgvessel_logicals = (four_class_array==3)
-    lgvessel_array[lgvessel_logicals] = 1
-    
-    return capillary_array, lgvessel_array, canvas_border_array
-
-#data consinstency check
+#data consistency check
 def data_consistency_check(imgs,masks):
     assert(len(imgs.shape)==len(masks.shape))
     assert(imgs.shape[0]==masks.shape[0])
@@ -267,7 +249,7 @@ def extract_ordered_overlap_train_combo(full_imgs, full_Combo, patch_h, patch_w,
 
     patches_Combo = np.empty((N_patches_tot,full_imgs.shape[1],patch_h,patch_w))
     iter_tot = 0   #iter over the total number of patches (N_patches)
-#    threshold = (patch_h*patch_h)/4
+    threshold = (patch_h*patch_h)/4
     threshold = (patch_h*patch_h)/2
     print "threshold value"
     print threshold
