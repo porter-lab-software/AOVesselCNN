@@ -19,8 +19,9 @@ where validation_image_path is defined in config_train.txt.
 
 Segmentation (testing unknowns)
 
-The zip file "example" contains 5 example grayscale perfusion images. 
-These images should be unzipped and put into the folder [image_path]\example,
+The zip file "example" contains the folder Images with 5 example grayscale 
+perfusion images. The folder should be unzipped and put into the folder 
+[image_path], such that the images are in [image_path]\example\Images,
 where [image_path] is defined in config_test_only.txt. 
 
 Metrics
