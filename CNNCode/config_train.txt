@@ -31,7 +31,7 @@ inside_FOV = True
 stride_height = 64
 stride_width = 64
 #Number of training epochs
-N_epochs = 350
+N_epochs = 250
 batch_size = 64
 
 # enable nohup so remote task continues if logout
