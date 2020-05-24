@@ -249,7 +249,6 @@ def extract_ordered_overlap_train_combo(full_imgs, full_Combo, patch_h, patch_w,
 
     patches_Combo = np.empty((N_patches_tot,full_imgs.shape[1],patch_h,patch_w))
     iter_tot = 0   #iter over the total number of patches (N_patches)
-    threshold = (patch_h*patch_h)/4
     threshold = (patch_h*patch_h)/2
     print "threshold value"
     print threshold
