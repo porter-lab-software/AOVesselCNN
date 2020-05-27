@@ -175,8 +175,7 @@ def get_data_unknown_Imgs(test_imgs, imgs_to_test, patch_height, patch_width, st
     print('in get_data_unknown_Imgs')
     print(test_imgs.shape)
     max_image_index = test_imgs.shape[0]
-    if max_image_index > (imgs_to_test-1):
-        max_image_index = imgs_to_test-1
+
     #extend both images and masks so they can be divided exactly by the patches dimensions
     if max_image_index == 0:
         test_imgs = test_imgs
