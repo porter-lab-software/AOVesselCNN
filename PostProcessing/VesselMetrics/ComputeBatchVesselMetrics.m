@@ -231,7 +231,7 @@ for i = 1: fileCount
     Skeleton_Im2 = bwmorph(comparisonImage ,'thin',Inf);
     
     %remove spurs
-    minLength = 15; % as per Musial 3/4/2020
+    minLength = 15; 
     Skeleton_Im1 = removeSpurs(Skeleton_Im1,minLength);
     Skeleton_Im2 = removeSpurs(Skeleton_Im2,minLength);
     
@@ -259,7 +259,7 @@ columnCount = numel(headers);
 target_file = fullfile(pathName,strcat(parentFolder,'_Data.xls'));
 dataMatrix = [DensityImOne DensityImTwo dilatedDice meanSegLength_Im1 meanSegLength_Im2 Acc Sensitivity UndilatedDice];
 meanMetricRow = mean(dataMatrix,1);
-stdMetricRow = std(dataMatrix,1);
+stdMetricRow = std(dataMatrix,0,1);
 rmsDensity = sqrt(sum((DensityImOne - DensityImTwo).^2)/fileCount);
 rmsMSL = sqrt(sum((meanSegLength_Im1 - meanSegLength_Im2).^2)/fileCount);
 
