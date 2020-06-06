@@ -169,7 +169,7 @@ def get_data_testing_overlap(test_imgs_original, test_combo, imgs_to_test,
     return patches_imgs_test, test_imgs.shape[2], test_imgs.shape[3],  test_imgs, test_combo
 
 # Load the original data and return the extracted patches for testing with no ground truth	
-def get_data_unknown_Imgs(test_imgs, imgs_to_test, patch_height, patch_width, stride_height, stride_width):
+def get_data_unknown_Imgs(test_imgs, patch_height, patch_width, stride_height, stride_width):
     ### test
     # test_imgs = load_hdf5(test_imgs_original)
     print('in get_data_unknown_Imgs')

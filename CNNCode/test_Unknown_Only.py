@@ -11,6 +11,7 @@
 import os, sys
 import ConfigParser
 import numpy as np
+import datetime
 
 # Keras
 import tensorflow
@@ -28,19 +29,16 @@ from tensorflow.keras import backend as K
 from tensorflow.keras.metrics import categorical_accuracy, binary_accuracy
 from tensorflow.keras.losses import categorical_crossentropy , binary_crossentropy
 
-#Custon Functions
+#Custom Functions
 from RPC_CNN_Functions import *
 
 from scipy import ndimage
 from PIL import Image
 
-# import cv2
-# from cv2 import CV_32F
 if sys.platform=='win32':
     print('Windows (32/64-bit) detected. This project was tested only on Linux system.')
     exit();
-    
-#slash = os.path.sep
+print datetime.datetime.now()    
 
 sys.path.insert(0, os.path.join('.','lib'))
 print "before reading file"
@@ -89,11 +87,17 @@ os.system('cp ' + configFile + ' ' + os.path.join(experiment_path,experiment_nam
 #Load the saved model
 model = tensorflow.keras.models.load_model(os.path.join(trained_path,trained_cnn))
 model.compile(optimizer='rmsprop', loss=categorical_crossentropy,metrics=['categorical_accuracy'])
+print "model loaded"
+
 # dimension of the patches
 patch_height = model.input_shape[2]
 patch_width = model.input_shape[3]
 
-print "model loaded"
+#the stride in case output with average
+stride_height = int(config.get('testing settings', 'stride_height'))
+stride_width = int(config.get('testing settings', 'stride_width'))
+assert (stride_height < patch_height and stride_width < patch_width)
+
 # Process one image at a time, skipping RGB TIFs
 
 for parent_folder, subfolders, files in os.walk(imgs_dir):
@@ -105,7 +109,7 @@ for parent_folder, subfolders, files in os.walk(imgs_dir):
         files.sort()
         for file_name in files:
             pil_img = Image.open(os.path.join(parent_folder,file_name))
-            print(pil_img.format)
+
             img = np.asarray(pil_img)
             pil_img.close()
             del pil_img
@@ -138,19 +142,6 @@ for parent_folder, subfolders, files in os.walk(imgs_dir):
                 full_img_height = test_imgs_orig.shape[2]
                 full_img_width = test_imgs_orig.shape[3]
 
- 
-                #the stride in case output with average
-                stride_height = int(config.get('testing settings', 'stride_height'))
-                stride_width = int(config.get('testing settings', 'stride_width'))
-                assert (stride_height < patch_height and stride_width < patch_width)
-
-                #N full images to be predicted
-                image_count = int(config.get('testing settings', 'full_images_to_test'))
-                print "config number of Images"
-                print image_count
-                #Grouping of the predicted images
-                N_visual = int(config.get('testing settings', 'N_group_visual'))
-
                 #============ Load the data and divide in patches
                 patches_imgs_test = None
                 new_height = None
@@ -159,7 +150,6 @@ for parent_folder, subfolders, files in os.walk(imgs_dir):
                 patches_border_test = None
                 patches_imgs_test, new_height, new_width = get_data_unknown_Imgs(
                     test_imgs_orig,  #original
-                    image_count,
                     patch_height = patch_height,
                     patch_width = patch_width,
                     stride_height = stride_height,
@@ -188,7 +178,7 @@ for parent_folder, subfolders, files in os.walk(imgs_dir):
                 pred_imgs_background = recompone_overlap(pred_background_patches, new_height, new_width, stride_height, stride_width) #predictions
 
                 #Original images
-                orig_imgs = test_imgs_orig[0:pred_imgs_capillary.shape[0],:,:,:]    #originals
+                orig_imgs = test_imgs_orig[0:pred_imgs_capillary.shape[0],:,:,:]    #original
 
                 ## back to original dimensions
                 #inputs
@@ -207,12 +197,11 @@ for parent_folder, subfolders, files in os.walk(imgs_dir):
 
                 #======== Save Images
                 #Save Images
-                visualize(group_images(orig_imgs,N_visual),os.path.join(experiment_path ,prefix+"_originals")) #show()
+                visualize(group_images(orig_imgs,1),os.path.join(experiment_path ,prefix+"_originals")) #show()
 
-                visualize(group_images(pred_imgs_capillary,N_visual),os.path.join(experiment_path,prefix+"_predictions_capillary")) # .show()
-                visualize(group_images(pred_imgs_LGVessel,N_visual),os.path.join(experiment_path,prefix+"_predictions_LGVessel")) # .show()
-                visualize(group_images(pred_imgs_Border,N_visual),os.path.join(experiment_path,prefix+"_predictions_canvas")) # .show()
-                visualize(group_images(pred_imgs_background,N_visual),os.path.join(experiment_path,prefix+"_predictions_background")) # .show()
-
-     
-                print "visualize over"
+                visualize(group_images(pred_imgs_capillary,1),os.path.join(experiment_path,prefix+"_predictions_capillary")) # .show()
+                visualize(group_images(pred_imgs_LGVessel,1),os.path.join(experiment_path,prefix+"_predictions_LGVessel")) # .show()
+                visualize(group_images(pred_imgs_Border,1),os.path.join(experiment_path,prefix+"_predictions_canvas")) # .show()
+                visualize(group_images(pred_imgs_background,1),os.path.join(experiment_path,prefix+"_predictions_background")) # .show()
+print "segmentation completed"
+print datetime.datetime.now()
