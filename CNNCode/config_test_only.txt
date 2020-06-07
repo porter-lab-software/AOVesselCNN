@@ -13,23 +13,11 @@ name = example
 patch_height = 128
 patch_width = 128
 
-[training settings]
-#if patches are extracted only inside the field of view:
-inside_FOV = True
-stride_height = 64
-stride_width = 64
-#Number of training epochs
-N_epochs = 3
-batch_size = 64
 
 #if running with nohup
 nohup = True
 
 [testing settings]
-#number of full images for the test
-full_images_to_test = 1
-#How many original-groundTruth-prediction images are visualized in each image
-N_group_visual = 1
 #Only if average_mode==True. Stride for patch extraction, lower value require more patches to be predicted
 stride_height = 32
 stride_width = 32
