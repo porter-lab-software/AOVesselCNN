@@ -13,7 +13,7 @@ import h5py
 from PIL import Image
 import tensorflow
 from tensorflow import keras
-from sklearn.metrics import confusion_matrix , f1_score, jaccard_similarity_score , roc_curve
+from sklearn.metrics import confusion_matrix , f1_score, jaccard_score , roc_curve
 from sklearn.metrics import precision_recall_curve, roc_auc_score, classification_report
 from sklearn.model_selection import cross_val_score
 

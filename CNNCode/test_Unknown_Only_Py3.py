@@ -29,31 +29,41 @@ from tensorflow.keras.metrics import categorical_accuracy, binary_accuracy
 from tensorflow.keras.losses import categorical_crossentropy , binary_crossentropy
 
 #Custom Functions
-from RPC_CNN_Functions import *
+from RPC_CNN_Functions_Py3 import *
 
 from scipy import ndimage
 from PIL import Image
 
-if sys.platform=='win32':
-    print('Windows (32/64-bit) detected. This project was tested only on Linux system.')
-    exit();
+import tkinter as tk
+from tkinter import filedialog
+#Function to Select files
+root = tk.Tk()
+root.withdraw()
+root.call('wm', 'attributes', '.', '-topmost', True)
+files = filedialog.askopenfilename(multiple=True) 
+
+var = root.tk.splitlist(files)
+filePath = []
+for f in var:
+    filePath.append(f)
+filePath
+
+
 print(datetime.datetime.now())    
 
-sys.path.insert(0, os.path.join('.','lib'))
 print("before reading file")
 
-print(sys.argv)
-configFile = sys.argv[1]
-configFilePath = os.path.join('.' ,configFile)
+configFilePath = filePath[0]
+
+configFile = os.path.basename(configFilePath)
 
 print(configFilePath)
+print(configFile)
 
 #config file to read from
 config = configparser.RawConfigParser()
-config.readfp(open(configFilePath))
+config.read_file(open(configFilePath))
 
-#Load settings from Config file
-config.read(configFile)
 print("read configuration text")
 
 #patch to the datasets
@@ -61,6 +71,8 @@ image_path = config.get('data paths', 'image_path')
 #data_path = config.get('data paths', 'path_local')
 trained_path = config.get('data paths', 'trained_path')
 trained_cnn = config.get('data paths','trained_cnn')
+
+
 
 #Experiment name
 experiment_name = config.get('experiment name', 'name')
@@ -109,9 +121,9 @@ for parent_folder, subfolders, files in os.walk(imgs_dir):
         for file_name in files:
             pil_img = Image.open(os.path.join(parent_folder,file_name))
 
-            img = np.asarray(pil_img)
+            img = np.array(pil_img)
             pil_img.close()
-            del pil_img
+            #del pil_img
             
             print('image dimensions')
             print(img.shape)

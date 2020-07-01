@@ -1,0 +1,24 @@
+[data paths]
+#To use network on unknown image include: image_path, path_local, trained_path, test_imgs_original path
+image_path = D:\CNN Project\DataSets\Testing Data Set 14 Ims with Glaucoma\
+trained_path = D:\CNN Project\Trained20200522_UsedforLongitudinal
+trained_cnn = trained_best_weights.h5
+
+[experiment name]
+#Identifier for specific run
+name = example
+
+[data attributes]
+#Dimensions of the patches extracted from the full images
+patch_height = 128
+patch_width = 128
+
+
+#if running with nohup
+nohup = True
+
+[testing settings]
+#Only if average_mode==True. Stride for patch extraction, lower value require more patches to be predicted
+stride_height = 32
+stride_width = 32
+
