@@ -32,7 +32,10 @@ from tensorflow.keras.losses import categorical_crossentropy , binary_crossentro
 from RPC_CNN_Functions_Py3 import *
 
 from scipy import ndimage
+
 from PIL import Image
+from matplotlib.pyplot import imread
+
 
 import tkinter as tk
 from tkinter import filedialog
@@ -120,8 +123,9 @@ for parent_folder, subfolders, files in os.walk(imgs_dir):
         files.sort()
         for file_name in files:
             pil_img = Image.open(os.path.join(parent_folder,file_name))
-
-            img = np.array(pil_img)
+            
+            image = imread(os.path.join(parent_folder,file_name))
+            img = (pil_img)
             pil_img.close()
             #del pil_img
             
